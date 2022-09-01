@@ -6,6 +6,7 @@ import About from './component/About';
 import Signin from './component/Signin';
 import Header from './component/Header';
 import Pagenotfound from './component/pagenotfound';
+import Register from './component/Register';
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <Route path = "/" element = {<Home/>}/>
         <Route path = "/home" element = {<Home/>}/>
         <Route path = "/about" element = {<About/>}/>
+        <Route path = "/register" element = {<Register/>}/>
         <Route path = "/Signin" element = {<Signin/>}/>
         <Route path = "*" element = {<Pagenotfound/>}/>
       </Routes>
