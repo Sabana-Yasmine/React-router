@@ -18,7 +18,7 @@ const Signin = () => {
             
             alert("successfully Signin")
             navigate("/home");
-        }).catch((error)=>{
+        }).catcgith((error)=>{
             console.log(error);
         });
         const removedata = async(data) =>{
