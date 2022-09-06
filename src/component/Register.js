@@ -60,7 +60,7 @@ function Register(props) {
             </div>
 
             <div>
-            <label htmlfor="" className="btn btn-primary" onClick={handleSubmit}>submit</label>
+            <button htmlfor="" className="btn btn-primary" onClick={handleSubmit}>submit</button>
             </div>
             </div>
     );
