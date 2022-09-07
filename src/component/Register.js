@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Register(props) {
-
+const navigate =useNavigate();
  const[user, setUser] = useState({
     username : "",
     email : "",
@@ -32,7 +33,9 @@ function Register(props) {
             data : user
         }).then((res) =>{
             console.log(res.data.message)
-            alert("user")
+            alert("user register successfully please login")
+            navigate("/signin")
+
         }).catch((err) =>{
             console.log("err", err)
         })

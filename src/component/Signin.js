@@ -25,12 +25,9 @@ const Signin = () => {
         });
        
     }
-    const handleSubmit = () => {
-       console.log(username,password)
-      };
-
-          
-        
+    // const handleSubmit = () => {
+    //    console.log(username,password)
+    //   };
           return (
             <div className ="container my-5">
                 <div className=" col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 p-4">
@@ -60,7 +57,7 @@ const Signin = () => {
                     </form>
                     
                         <p>Already have an account? Signin or 
-                        <a href="" onClick={(Register )=>navigate("/register")}>
+                        <a href="" onClick={()=>navigate("/register")}>
                             Signup
                         </a>
                     </p>

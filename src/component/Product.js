@@ -1,77 +1,77 @@
-import { Space, Table, Button,  } from "antd";
+import { Space, Table, Pagination, Button, Select } from "antd";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {EditOutlined, DeleteOutlined}from "@ant-design/icons";
-
-function Product() {
-    const [prodList, setProdList] = useState([]);
+import {
+  EditOutlined,
+  DeleteOutlined,
+  PrinterTwoTone,
+  PlusSquareOutlined,
+  RightCircleOutlined
   
-    useEffect(() => {
-      getProdDetails();
-    },[]);
+} from "@ant-design/icons";
 
-    const getProdDetails = () => {
-        axios
-          .get("http://localhost:402/product/getallproduct")
-          .then((res) => {
-            setProdList(res.data.result);
-            console.log(prodList);
-        });
-    };
-    // const removedata = async(data) =>{
-    //     const token = localStorage.getItem("token")
-    //     console.log("token",token)
-    //     let deleteitem =await axios.deleteitem(`http://localhost:402/product/deleteproduct`,{
-    //         headers:{token:token}
-    //     })
-    //     .then((res)=>{
-    //         console.log(res.data.result);
-       
-    //     })
-    //     .catch((error)=>{
-    //         alert(error.message);
-    //         console.log(error);
-    //     })
-    // }
+function ProdTable() {
+  const [prodList, setProdList] = useState([]);
 
-    const columns = [
-        {
-          title: "ProductCategory",
-          dataIndex: "ProductCategory",
-          key: "ProductCategory",
-        },
-        {
-          title: "ProductName",
-          dataIndex: "ProductName",
-          key: "ProductName",
-        },
-        {
-          title: "Price",
-          dataIndex: "Price",
-          key: "Price",
-        },
-        {
-            title: "Quantity",
-            dataIndex: "Quantity",
-            key: "Quantity",
-          },
-          {
-            title: "Action",
-            key: "action",
-            render: (_, record) => (
-              <Space size="middle">
-                <a style={{ fontStyle: "italic" }}>Mail to {record.UserName}</a>
-                <EditOutlined style={{ color: "DeepSkyBlue", marginLeft: "10px" }} />
-                <DeleteOutlined style={{ color: "red", marginLeft: "10px" }} />
-              </Space>
-            ),
-          },
-        ];
-        return (
-            <div className="Product">
-              <Table className="user-table" columns={columns} dataSource={prodList} />
-            </div>
-          
-          );
-}  
-export default Product;
+  useEffect(() => {
+    getProdDetails();
+  }, []);
+
+
+  const getProdDetails = async(data) => {
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:402/product/getallproduct",{
+        headers:{token:token}
+      })
+      .then((res) => {
+        setProdList(res.data.result);
+        console.log(prodList);
+      });
+  };
+
+  const columns = [
+    {
+      title: "ProductCategory",
+      dataIndex: "productCategory",
+      key: "productCategory",
+    },
+    {
+      title: "ProductName",
+      dataIndex: "productName",
+      key: "productName",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space size="middle">
+          <a style={{ fontStyle: "italic" }}>Mail to {record.UserName}</a>
+          <PlusSquareOutlined style={{ color: "Lime", marginLeft: "100px" }} />
+          <EditOutlined style={{ color: "DeepSkyBlue", marginLeft: "10px" }} />
+          <DeleteOutlined style={{ color: "red", marginLeft: "10px" }} />
+          <PrinterTwoTone style={{ marginLeft: "10px" }} />
+          <RightCircleOutlined />
+        </Space>
+      ),
+    },
+  ];
+
+  return (
+    <>
+      <Table className="user-table" columns={columns} dataSource={prodList} />
+    </>
+  );
+}
+
+export default ProdTable;
